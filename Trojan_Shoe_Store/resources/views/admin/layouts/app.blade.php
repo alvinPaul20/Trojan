@@ -19,7 +19,7 @@
     @stack('styles')
 </head>
 
-<body>
+<body data-bs-spy="scroll" data-bs-target="#sidebar-nav" data-bs-offset="70" tabindex="0">
 @include('admin.partials.header')
     <div class="wrapper d-flex justify-content-center align-items-center">
         @include('admin.partials.navbar')
