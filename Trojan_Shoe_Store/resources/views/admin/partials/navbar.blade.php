@@ -68,21 +68,10 @@
                                 <ul class="nav nav-collapse">
                                 <li>
                                         <a href="{{ route('admin.UserAccount') }}">
-                                            <span class="sub-item">Accounts</span>
+                                            <span class="sub-item">Manage Accounts</span>
                                         </a>
                                     </li>
-                                <li>
-                                        <a href="{{ route('admin.sub-pages.addAccount') }}">
-                                            <span class="sub-item">Add Account</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                    <a href="{{ route('admin.sub-pages.edit_account') }}">
-                                                <span class="sub-item">Edit Account</span>
-                                            </a>    
 
-
-                                    </li>
                                     <!-- More components can be added here -->
                                 </ul>
                             </div>
