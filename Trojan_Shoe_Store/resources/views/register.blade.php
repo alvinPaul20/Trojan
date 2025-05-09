@@ -86,39 +86,53 @@ font-weight: 200;
 }
     </style>
 @endpush
-@section('title', 'Login - TROJAN')
+
+@section('title', 'Create Account - TROJAN')
 
 @section('content')
 <div class="container-fluid login mb-5">
-            <div class="row justify-content-center">
-                <div class="col-sm-3 d-flex justify-content-center flex-column ">
-                    <div class="header-text mb-4 text-center">
-                        <h2>
-                          Create account
-                        </h2>
-                    </div>
-                    <div class="input-group mb-3 w-100 ">
-                      <input class="form-control form-control-md border border-dark " type="text" placeholder="Firstname" aria-label="name" >
-                    </div>
-                    <div class="input-group mb-3 w-100 ">
-                      <input class="form-control form-control-md border border-dark " type="text" placeholder="Lastname" aria-label="name">
-                    </div>
-                    <div class="input-group mb-3 w-100 ">
-                        <input class="form-control form-control-md border border-dark " type="text" placeholder="Email" aria-label="Email">
-                      </div>
-                      <div class="input-group mb-3 w-100 ">
-                        <input class="form-control form-control-md border border-dark " type="password" placeholder="Password" aria-label="Password">
-                      </div>
-                    
-                    <div class="btn justify-content-center mb-3">
-                      <button type="button" class="btn btn-success Sign" style="width: 100px;"><a href="#" class="text-light">Sign up</a></button>
-                    </div>
-                    <div class="text-center">
-                        <a href="login.html" style="text-decoration: underline;" class="text-success account ">Back to login</a>
-                    </div>
-                    
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-3 d-flex justify-content-center flex-column">
+            <div class="header-text mb-4 text-center">
+                <h2>Create account</h2>
             </div>
-         </div>
 
+            <!-- Display validation errors if there are any -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <!-- Registration form -->
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+
+                <div class="input-group mb-3 w-100">
+                    <input class="form-control form-control-md border border-dark" name="name" type="text" placeholder="Full Name" required value="{{ old('name') }}">
+                </div>
+
+                <div class="input-group mb-3 w-100">
+                    <input class="form-control form-control-md border border-dark" name="email" type="email" placeholder="Email" required value="{{ old('email') }}">
+                </div>
+
+                <div class="input-group mb-3 w-100">
+                    <input class="form-control form-control-md border border-dark" name="password" type="password" placeholder="Password" required>
+                </div>
+
+                <div class="btn justify-content-center mb-3">
+                    <button type="submit" class="btn btn-success w-100">Sign up</button>
+                </div>
+            </form>
+
+            <div class="text-center">
+                <a href="{{ route('login') }}" style="text-decoration: underline;" class="text-success account">Back to login</a>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

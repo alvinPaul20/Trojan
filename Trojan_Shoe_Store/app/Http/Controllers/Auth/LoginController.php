@@ -20,23 +20,23 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
+    
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             $user = Auth::user();
-
+    
             if (in_array($user->role, ['admin', 'subadmin'])) {
                 return redirect('/admin_page');
             }
-
+    
             return redirect('/');
         }
-
-        return back()->withErrors([
-            'email' => 'Invalid email or password.',
-        ]);
+    
+        // Redirect back with input and show error alert
+        return back()
+            ->withInput($request->only('email'))
+            ->with('error', 'Invalid email or password.');
     }
-
     public function logout(Request $request)
     {
         Auth::logout(); // Log out the user
@@ -44,6 +44,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken(); // Regenerate the CSRF token
     
         return redirect('/login'); // Redirect the user to the login page
-    }
-    
+    }    
+
 }

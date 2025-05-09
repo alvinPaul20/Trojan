@@ -39,4 +39,5 @@ class PageController extends Controller
     public function register() {
         return view('register');
     }
+    
 }
